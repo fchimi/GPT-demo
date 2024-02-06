@@ -2,6 +2,11 @@
 let chat = document.getElementById("chat").contentWindow
 let display = document.getElementById("display").contentWindow
 let base = location.href.replace(/index\.html$/, "")
+let url = base + "api/my/"
+
+//document.addEventListener("DOMContentLoaded", function() {
+//    chat.postMessage({name: "Ambra", url: url})
+//})
 
 
 // inizialize the chat buttons
@@ -24,8 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
             insert.appendChild(p);
             console.log("enabled "+service.name)
         });
-        document.querySelector("button").click()
-
     })
     .catch( (e) => { console.log(e); alert("ERROR: cannot load index") } )
 })

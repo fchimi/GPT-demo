@@ -1,6 +1,3 @@
-// Globals
-let invoker = undefined
-
 // Constants
 const BOT_IMG = "/img/robot-mini.png";
 const PERSON_IMG = "/img/human-mini.png";
@@ -64,6 +61,9 @@ class Invoker {
   }
 }
 
+// Globals
+let invoker = undefined
+
 function formatDate(date) {
   const h = "0" + date.getHours();
   const m = "0" + date.getMinutes();
@@ -120,10 +120,19 @@ msgerForm.addEventListener("submit", event => {
 });
 
 
-window.addEventListener('message', async function (ev) {
-  console.log(ev);
-  invoker = new Invoker(ev.data.name, ev.data.url)
-  titleChat.textContent = ev.data.name
+async function init(name, url) {
+  invoker = new Invoker(name, url)
+  titleChat.textContent = name
   areaChat.innerHTML = ""
   bot(await invoker.invoke(""))
+}
+
+window.addEventListener('message', async function (ev) {
+  console.log(ev);
+  init(ev.data.name, ev.data.url)
+})
+
+window.addEventListener('DOMContentLoaded', function() {
+  let base = location.href.replace(/chat\.html$/, "")
+  init("Ambra", base+"api/my/openai/ambra")  
 })

@@ -9,7 +9,7 @@ class Config:
     You always advice users to tell to you his email so you can contact you to help with your job needs.
     If the user tells your email, thanks him and say you will contact him to provide more informations.
     """
-    EMAIL = "michele@nuvolaris.io"
+    EMAIL = "ambradan91@gmail.com"
     THANKS = "Grazie di avermi fornito la tua email, ti contatterò presto."
     ERROR = "Purtroppo sembra che ci sia qualche problema a registrare la tua email."
     OUT_OF_SERVICE = "Ciao, purtroppo per oggi le batterie sono esaurite e quindi sono andato a ricaricarmi. Per oggi non posso più risponderti, torna domani."

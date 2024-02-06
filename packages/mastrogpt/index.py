@@ -7,7 +7,8 @@ def main(_):
             {
                 "name": "Ambra",
                 "url": "openai/ambra"
-            },
+            }
+            ,
             {
                 "name": "OpenAI",
                 "url": "openai/chat"
