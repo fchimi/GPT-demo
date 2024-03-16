@@ -24,7 +24,6 @@ class Config:
 #--param SMTP_PASSWORD $SMTP_PASSWORD
 #--param SMTP_PORT $SMTP_PORT
 
-
 import re, json
 import smtplib, email
 import requests

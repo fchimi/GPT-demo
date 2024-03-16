@@ -28,20 +28,22 @@ You can run Nuvolaris Starter:
 - Wait the setup is complete
 - Provide Nuvolaris username and password
 
+# Configuration
+
+To use it for your website you need to put in some values in  `.env`
+
+Copy .env.dist to  `.env` and fill with the required values
+
 You are ready to develop!
 
-# Development
+# Developmet
 
-Use:
+Use from the terminal
 
 - `devel` to run a local development environment
 - `deploy` to deploy everything in cloud
 
-There are some other useful commands, type `task` to see them.
+You can also use our extension for using it. 
 
-# Setup and Config
+Click on the "nuvolaris" icon and you have the commands available.
 
-It is executed automatically when you open a terminal, however there are also the following command you can call directly:
-
-- `task setup`: install everything it is needed
-- `task config`:  asks for username and password and builds `.env`
