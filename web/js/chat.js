@@ -51,6 +51,7 @@ class Invoker {
         let output = data.output
         delete data['output']
         delete data['state']
+        data['type'] = 'chat'
         displayWindow.postMessage(data)
         return output
       })
@@ -128,6 +129,8 @@ async function init(name, url) {
 }
 
 window.addEventListener('message', async function (ev) {
+  if(ev.data.type != "chat")
+    return
   console.log(ev);
   init(ev.data.name, ev.data.url)
 })

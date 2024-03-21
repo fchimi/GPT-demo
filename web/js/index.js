@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
             button.textContent = service.name;
             button.onclick = function() {
                 let url = base + "api/my/"+service.url
-                chat.postMessage({name: service.name, url: url})
+                chat.postMessage({name: service.name, type: 'chat', url: url})
             };
             let = p = document.createElement("span")
             p.appendChild(button);
