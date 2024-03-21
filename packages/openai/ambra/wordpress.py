@@ -13,22 +13,14 @@ class Config:
     THANKS = "Grazie di avermi fornito la tua email, ti contatterò presto."
     ERROR = "Purtroppo sembra che ci sia qualche problema a registrare la tua email."
     OUT_OF_SERVICE = "Ciao, purtroppo per oggi le batterie sono esaurite e quindi sono andato a ricaricarmi. Per oggi non posso più risponderti, torna domani."
+    INAPPROPRIATE = "Temo che la tua richiesta possa essere fraintesa. Puoi riformularla in maniera più appropriata?"
     
 
-## options
-#--web true
-#--param OPENAI_API_KEY $OPENAI_API_KEY
-#--param OPENAI_API_HOST $OPENAI_API_HOST
-#--param SMTP_SERVER $SMTP_SERVER
-#--param SMTP_USER $SMTP_USER
-#--param SMTP_PASSWORD $SMTP_PASSWORD
-#--param SMTP_PORT $SMTP_PORT
-
-import re, json
+import re, json, os
 import smtplib, email
 import requests
 import traceback
-from openai import AzureOpenAI
+from openai import AzureOpenAI, BadRequestError
 from html_sanitizer import Sanitizer
 
 
@@ -96,8 +88,8 @@ Subject: %s
         
 class ChatBot:
     def __init__(self, args):
-        self.key = args["OPENAI_API_KEY"]
-        self.host = args["OPENAI_API_HOST"]
+        self.key = args.get("OPENAI_API_KEY", os.environ.get("OPENAI_API_KEY"))
+        self.host = args.get("OPENAI_API_HOST", os.environ.get("OPENAI_API_HOST"))
         self.ai =  AzureOpenAI(api_version="2023-12-01-preview", 
                                 api_key=self.key, 
                                 azure_endpoint=self.host)
@@ -112,9 +104,11 @@ class ChatBot:
             if len(comp.choices) > 0:
                 content = comp.choices[0].message.content
                 return content
+        except BadRequestError as e:
+            return Config.INAPPROPRIATE
         except Exception as e:
             return Config.OUT_OF_SERVICE
-        
+
         return None
 
     def identify_topic(self, topics, input):
