@@ -22,28 +22,20 @@ You can run Nuvolaris Starter:
 - Open it in VSCode
 - Press F1  and the "Reopen in Container"
 
-# Configuration
+# Environments and Secrets
 
-- Open a new terminal. 
-- Wait the setup is complete
-- Provide Nuvolaris username and password
+- Copy the `.env.example` in `.env`
+- Add your secrets there (do not commit them - it is in .gitignore)
+- Add non secrets envirornment variables in packages/.env
+- Pass secrets and environments to your function with `#--param ARGUMENT "$VARIABLE"`
+- Read the secrets as function arguments
 
-# Configuration
+# Development
 
-To use it for your website you need to put in some values in  `.env`
+Use the Nuvolaris Icon to execute the functions, or use the following commands from the terminal:
 
-Copy .env.dist to  `.env` and fill with the required values
+- `devel` (or `nuv ide devel` to run a local development environment
+- `deploy` (or `nuv ide deploy`) to deploy everything in cloud
+- `login` (or `nuv ide login`) to login again
 
-You are ready to develop!
-
-# Developmet
-
-Use from the terminal
-
-- `devel` to run a local development environment
-- `deploy` to deploy everything in cloud
-
-You can also use our extension for using it. 
-
-Click on the "nuvolaris" icon and you have the commands available.
-
+Check `nuv ide` subcommand for more options.
